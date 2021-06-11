@@ -49,7 +49,7 @@ class GradCAM:
         pooled_grads = pooled_grads.view(-1, self.ch, 1, 1)
         self.heatmap_tensor = pooled_grads * self.encoded
         self.heatmap_tensor = torch.mean(self.heatmap_tensor, dim=1)
-        # to have mimimum value as 0
+        # to have minimum value as 0
         self.heatmap_tensor = F.relu(self.heatmap_tensor)
         # normalizing between 0-1
         self.heatmap_tensor = self.heatmap_tensor / torch.max(self.heatmap_tensor)
